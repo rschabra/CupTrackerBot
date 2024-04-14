@@ -24,7 +24,7 @@ for summoner in data:
     print(actualCounter)
     actualCounter = actualCounter + 1
     counter = counter + 1
-    if (counter >= 98):
+    if (counter >= 48):
         counter = 0
         time.sleep(120)
         print("Reached rate limit of 100. Sleeping for 2 minutes")
