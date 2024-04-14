@@ -3,7 +3,7 @@ import requests
 import numpy as np
 import time
 
-api_key = "RGAPI-6de8acb3-5d7d-43ed-b545-3877515852ac"
+api_key = "API KEY"
 
 get_puid_url = 'https://americas.api.riotgames.com/riot/account/v1/accounts/by-riot-id/'
 
