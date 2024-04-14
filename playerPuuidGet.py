@@ -1,17 +1,17 @@
+#!python
+
 import csv
 import requests
 import numpy as np
 import time
 
-api_key = "API KEY"
+api_key_file = open("api_key.txt", "r+")
+api_key = api_key_file.readline()
 
 get_puid_url = 'https://americas.api.riotgames.com/riot/account/v1/accounts/by-riot-id/'
 
-api_id_url = 'https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/'
-api_lp_url = 'https://na1.api.riotgames.com/tft/league/v1/entries/by-summoner/'
-
 playerNameList = ["Player Name"]
-playerLpList = ["Current LP"]
+playerLpList = ["Player Puuid"]
 
 counter = 0
 actualCounter = 0
@@ -20,11 +20,12 @@ with open('playerlist.csv', encoding="utf8", newline='') as file:
     reader = csv.reader(file)
     data = list(reader)
 
+print("Getting summoners' puuids.")
 for summoner in data:
     print(actualCounter)
     actualCounter = actualCounter + 1
     counter = counter + 1
-    if (counter >= 48):
+    if (counter >= 98):
         counter = 0
         time.sleep(120)
         print("Reached rate limit of 100. Sleeping for 2 minutes")
@@ -40,17 +41,7 @@ for summoner in data:
 
     playerPuuid = playerByRiotID["puuid"]
 
-    getIdUrl = api_id_url + playerPuuid + "?api_key=" + api_key
-    resp = requests.get(getIdUrl)
-    playerInfo = resp.json()
-    encryptedSummonerId = playerInfo['id']
-
-    getLpUrl = api_lp_url + encryptedSummonerId + "?api_key=" + api_key
-    respTwo = requests.get(getLpUrl)
-    playerLpInfo = respTwo.json()
-    playerLp = playerLpInfo[0]['leaguePoints']
-
     playerNameList.append(summoner[0])
-    playerLpList.append(playerLp)
+    playerLpList.append(playerPuuid)
 
-np.savetxt('playerListWithLP.csv', [p for p in zip(playerNameList, playerLpList)], delimiter=',', fmt='%s')
+np.savetxt('playerListWithPuuid.csv', [p for p in zip(playerNameList, playerLpList)], delimiter=',', fmt='%s', encoding='utf-8')
