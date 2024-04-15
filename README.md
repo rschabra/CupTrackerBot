@@ -26,5 +26,7 @@ Open Git Bash, or anywhere you are able to run python via the command line.
 
 Once the run has completed, a sorted_PlayerList_with_LP.csv file will have been generated. This file can be opened in Google Sheets or Excel and formatted appropriately.
 
+## [List](https://docs.google.com/spreadsheets/d/15nwPtxPJyQ5FGmh0Epsk_PLvpfbaZ2ypoExZahVdL7w/edit?usp=sharing)
+
 
 
