@@ -88,3 +88,4 @@ while True:
     ws.update_cell(1, 1, datetime.now().strftime("%Y-%m-%d %H:%M"))
     
     print("Restarting script!")
+    time.sleep(300)
